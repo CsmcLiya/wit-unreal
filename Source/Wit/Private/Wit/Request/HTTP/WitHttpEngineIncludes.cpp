@@ -50,5 +50,6 @@
 #if UE_VERSION_OLDER_THAN(5, 4, 0)
 #else
 #include "GenericPlatform/HttpRequestCommon.cpp"
+#include "GenericPlatform/HttpResponseCommon.cpp"
 #endif
 #endif
