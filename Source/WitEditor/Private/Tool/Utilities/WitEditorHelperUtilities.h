@@ -11,8 +11,6 @@
 #include "Misc/EngineVersionComparison.h"
 #if UE_VERSION_OLDER_THAN(5,1,0)
 #include "EditorStyleSet.h"
-#elif UE_VERSION_OLDER_THAN(5,5,0)
-#include "Styling/AppStyle.h"
 #else
 #include "Styling/AppStyle.h"
 #endif
