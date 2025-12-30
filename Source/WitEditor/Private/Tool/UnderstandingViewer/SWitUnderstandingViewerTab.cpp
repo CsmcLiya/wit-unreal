@@ -14,7 +14,11 @@
 #include "Widgets/Layout/SScrollBox.h"
 #include "Engine/Selection.h"
 #include "Editor.h"
+#if UE_VERSION_OLDER_THAN(5,5,0)
 #include "EditorStyleSet.h"
+#else
+#include "Styling/AppStyle.h"
+#endif
 #include "Tool/Utilities/WitEditorHelperUtilities.h"
 
 #define LOCTEXT_NAMESPACE "SWitUnderstandingViewerTab"

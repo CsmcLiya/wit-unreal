@@ -28,7 +28,11 @@ public class WitEditor : ModuleRules
 				"UnrealEd",
 				"EditorWidgets",
 				"PropertyEditor",
+#if UE_5_5_OR_LATER
+				"Styling",
+#else
 				"EditorStyle",
+#endif
 				"Wit",
 			});
 	}
