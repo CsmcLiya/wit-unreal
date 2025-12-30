@@ -32,7 +32,8 @@ public class WitEditor : ModuleRules
 			});
 		
 		// Add version-specific styling module
-		if (Target.Version.MajorVersion == 5 && Target.Version.MinorVersion >= 5)
+		// UE 5.5+ uses Styling module, earlier versions use EditorStyle
+		if ((Target.Version.MajorVersion > 5) || (Target.Version.MajorVersion == 5 && Target.Version.MinorVersion >= 5))
 		{
 			PublicDependencyModuleNames.Add("Styling");
 		}

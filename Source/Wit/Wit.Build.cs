@@ -91,7 +91,8 @@ public class Wit : ModuleRules
 		{
 			string ThirdPartyDir = Path.Combine(ModuleDirectory, "..", "ThirdParty");
 			
-			// Only add include paths if the directories exist
+			// Only add include paths if VoiceSDK is present (indicates full ThirdParty setup)
+			// All these dependencies come together as part of the VoiceSDK integration
 			if (Directory.Exists(Path.Combine(ThirdPartyDir, "VoiceSDK", "include")))
 			{
 				PublicIncludePaths.Add(Path.Combine(ThirdPartyDir, "VoiceSDK", "include"));
