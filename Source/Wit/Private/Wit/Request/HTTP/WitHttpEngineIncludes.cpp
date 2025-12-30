@@ -51,4 +51,9 @@
 #else
 #include "GenericPlatform/HttpRequestCommon.cpp"
 #endif
+#if UE_VERSION_OLDER_THAN(5, 6, 0)
+#else
+// UE 5.6 moved some HTTP constants and variables to HttpManager.cpp
+#include "HttpManager.cpp"
+#endif
 #endif
