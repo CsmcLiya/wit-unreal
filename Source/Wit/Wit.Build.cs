@@ -86,18 +86,24 @@ public class Wit : ModuleRules
 			}
 			);
 
-		string ThirdPartyDir = Path.Combine(ModuleDirectory, "..", "ThirdParty");
-		PublicIncludePaths.Add(Path.Combine(ThirdPartyDir, "VoiceSDK", "include"));
-		PublicIncludePaths.Add(Path.Combine(ThirdPartyDir, "boost", "include"));
-		PublicIncludePaths.Add(Path.Combine(ThirdPartyDir, "double-conversion", "include"));
-		PublicIncludePaths.Add(Path.Combine(ThirdPartyDir, "fmt", "include"));
-		PublicIncludePaths.Add(Path.Combine(ThirdPartyDir, "folly", "include"));
-		PublicIncludePaths.Add(Path.Combine(ThirdPartyDir, "glog", "include"));
-		PublicIncludePaths.Add(Path.Combine(ThirdPartyDir, "gtest", "include"));
-		PublicIncludePaths.Add(Path.Combine(ThirdPartyDir, "magic_enum", "include"));
-		PublicIncludePaths.Add(Path.Combine(ThirdPartyDir, "thrift", "include"));
+		// ThirdParty dependencies are only needed for Android builds with VoiceSDK
 		if (Target.Platform == UnrealTargetPlatform.Android)
 		{
+			string ThirdPartyDir = Path.Combine(ModuleDirectory, "..", "ThirdParty");
+			
+			// Only add include paths if the directories exist
+			if (Directory.Exists(Path.Combine(ThirdPartyDir, "VoiceSDK", "include")))
+			{
+				PublicIncludePaths.Add(Path.Combine(ThirdPartyDir, "VoiceSDK", "include"));
+				PublicIncludePaths.Add(Path.Combine(ThirdPartyDir, "boost", "include"));
+				PublicIncludePaths.Add(Path.Combine(ThirdPartyDir, "double-conversion", "include"));
+				PublicIncludePaths.Add(Path.Combine(ThirdPartyDir, "fmt", "include"));
+				PublicIncludePaths.Add(Path.Combine(ThirdPartyDir, "folly", "include"));
+				PublicIncludePaths.Add(Path.Combine(ThirdPartyDir, "glog", "include"));
+				PublicIncludePaths.Add(Path.Combine(ThirdPartyDir, "gtest", "include"));
+				PublicIncludePaths.Add(Path.Combine(ThirdPartyDir, "magic_enum", "include"));
+				PublicIncludePaths.Add(Path.Combine(ThirdPartyDir, "thrift", "include"));
+			}
 			string VoiceSdkLibraryPath = Path.Combine(ThirdPartyDir, "VoiceSDK", "lib", "Android");
 			PublicAdditionalLibraries.Add(Path.Combine(VoiceSdkLibraryPath, "libvoicesdk.a"));
 			PublicAdditionalLibraries.Add(Path.Combine(VoiceSdkLibraryPath, "libstubs.pic.a"));
