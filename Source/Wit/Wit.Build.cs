@@ -91,7 +91,7 @@ public class Wit : ModuleRules
 		{
 			string ThirdPartyDir = Path.Combine(ModuleDirectory, "..", "ThirdParty");
 			
-			// Only add include paths if VoiceSDK is present (indicates full ThirdParty setup)
+			// Only add include paths and libraries if VoiceSDK is present (indicates full ThirdParty setup)
 			// All these dependencies come together as part of the VoiceSDK integration
 			if (Directory.Exists(Path.Combine(ThirdPartyDir, "VoiceSDK", "include")))
 			{
@@ -104,33 +104,34 @@ public class Wit : ModuleRules
 				PublicIncludePaths.Add(Path.Combine(ThirdPartyDir, "gtest", "include"));
 				PublicIncludePaths.Add(Path.Combine(ThirdPartyDir, "magic_enum", "include"));
 				PublicIncludePaths.Add(Path.Combine(ThirdPartyDir, "thrift", "include"));
+				
+				string VoiceSdkLibraryPath = Path.Combine(ThirdPartyDir, "VoiceSDK", "lib", "Android");
+				PublicAdditionalLibraries.Add(Path.Combine(VoiceSdkLibraryPath, "libvoicesdk.a"));
+				PublicAdditionalLibraries.Add(Path.Combine(VoiceSdkLibraryPath, "libstubs.pic.a"));
+				PublicAdditionalLibraries.Add(Path.Combine(VoiceSdkLibraryPath, "libutils.pic.a"));
+
+				PublicAdditionalLibraries.Add(Path.Combine(ThirdPartyDir, "double-conversion", "lib", "Android", "lib_double-conversion.pic.a"));
+
+				string FollyLibraryPath = Path.Combine(ThirdPartyDir, "folly", "lib", "Android");
+				PublicAdditionalLibraries.Add(Path.Combine(FollyLibraryPath, "libasync_base.pic.a"));
+				PublicAdditionalLibraries.Add(Path.Combine(FollyLibraryPath, "libc_string.a"));
+				PublicAdditionalLibraries.Add(Path.Combine(FollyLibraryPath, "libdemangle.a"));
+				PublicAdditionalLibraries.Add(Path.Combine(FollyLibraryPath, "libdynamic.pic.a"));
+				PublicAdditionalLibraries.Add(Path.Combine(FollyLibraryPath, "libexception_string.a"));
+				PublicAdditionalLibraries.Add(Path.Combine(FollyLibraryPath, "libexception.a"));
+				PublicAdditionalLibraries.Add(Path.Combine(FollyLibraryPath, "libexecutor.a"));
+				PublicAdditionalLibraries.Add(Path.Combine(FollyLibraryPath, "libjson.pic.a"));
+				PublicAdditionalLibraries.Add(Path.Combine(FollyLibraryPath, "libunicode.pic.a"));
+				PublicAdditionalLibraries.Add(Path.Combine(FollyLibraryPath, "libhash_hash.a"));
+				PublicAdditionalLibraries.Add(Path.Combine(FollyLibraryPath, "libjson_pointer.a"));
+				PublicAdditionalLibraries.Add(Path.Combine(FollyLibraryPath, "libformat.a"));
+				PublicAdditionalLibraries.Add(Path.Combine(FollyLibraryPath, "libconv.a"));
+				PublicAdditionalLibraries.Add(Path.Combine(FollyLibraryPath, "libio_iobuf.a"));
+				PublicAdditionalLibraries.Add(Path.Combine(FollyLibraryPath, "libto_ascii.a"));
+				PublicAdditionalLibraries.Add(Path.Combine(FollyLibraryPath, "libsafe_assert.a"));
+
+				PublicAdditionalLibraries.Add(Path.Combine(ThirdPartyDir, "glog", "lib", "Android", "lib_glog.pic.a"));
 			}
-			string VoiceSdkLibraryPath = Path.Combine(ThirdPartyDir, "VoiceSDK", "lib", "Android");
-			PublicAdditionalLibraries.Add(Path.Combine(VoiceSdkLibraryPath, "libvoicesdk.a"));
-			PublicAdditionalLibraries.Add(Path.Combine(VoiceSdkLibraryPath, "libstubs.pic.a"));
-			PublicAdditionalLibraries.Add(Path.Combine(VoiceSdkLibraryPath, "libutils.pic.a"));
-
-			PublicAdditionalLibraries.Add(Path.Combine(ThirdPartyDir, "double-conversion", "lib", "Android", "lib_double-conversion.pic.a"));
-
-			string FollyLibraryPath = Path.Combine(ThirdPartyDir, "folly", "lib", "Android");
-			PublicAdditionalLibraries.Add(Path.Combine(FollyLibraryPath, "libasync_base.pic.a"));
-			PublicAdditionalLibraries.Add(Path.Combine(FollyLibraryPath, "libc_string.a"));
-			PublicAdditionalLibraries.Add(Path.Combine(FollyLibraryPath, "libdemangle.a"));
-			PublicAdditionalLibraries.Add(Path.Combine(FollyLibraryPath, "libdynamic.pic.a"));
-			PublicAdditionalLibraries.Add(Path.Combine(FollyLibraryPath, "libexception_string.a"));
-			PublicAdditionalLibraries.Add(Path.Combine(FollyLibraryPath, "libexception.a"));
-			PublicAdditionalLibraries.Add(Path.Combine(FollyLibraryPath, "libexecutor.a"));
-			PublicAdditionalLibraries.Add(Path.Combine(FollyLibraryPath, "libjson.pic.a"));
-			PublicAdditionalLibraries.Add(Path.Combine(FollyLibraryPath, "libunicode.pic.a"));
-			PublicAdditionalLibraries.Add(Path.Combine(FollyLibraryPath, "libhash_hash.a"));
-			PublicAdditionalLibraries.Add(Path.Combine(FollyLibraryPath, "libjson_pointer.a"));
-			PublicAdditionalLibraries.Add(Path.Combine(FollyLibraryPath, "libformat.a"));
-			PublicAdditionalLibraries.Add(Path.Combine(FollyLibraryPath, "libconv.a"));
-			PublicAdditionalLibraries.Add(Path.Combine(FollyLibraryPath, "libio_iobuf.a"));
-			PublicAdditionalLibraries.Add(Path.Combine(FollyLibraryPath, "libto_ascii.a"));
-			PublicAdditionalLibraries.Add(Path.Combine(FollyLibraryPath, "libsafe_assert.a"));
-
-			PublicAdditionalLibraries.Add(Path.Combine(ThirdPartyDir, "glog", "lib", "Android", "lib_glog.pic.a"));
 		}
 
 		DynamicallyLoadedModuleNames.AddRange(
